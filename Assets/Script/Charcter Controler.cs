@@ -40,5 +40,9 @@ public class CharcterControler : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
 
+
+
     }
+
+
 }

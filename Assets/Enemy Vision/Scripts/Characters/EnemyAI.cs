@@ -13,10 +13,15 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float stoppingDistance = 1f;
 
+    public float destroyHeight = -4f;
+
+    public Transform skeltonTransform;
+
     private void Start()
     {
         startPos = transform.position;
         startRotation = transform.rotation;
+
     }
 
     private void Update()
@@ -27,7 +32,17 @@ public class EnemyAI : MonoBehaviour
         Destination();
 
         if (agent.remainingDistance <= .1f)
+        {
             transform.rotation = Quaternion.Slerp(transform.rotation, startRotation, Time.deltaTime * smooothRotationTime);
+        }
+
+
+        // Check if the enemy's Y position is below the destroyHeight
+        if (skeltonTransform.position.y < destroyHeight)
+        {
+            Destroy(gameObject); // Destroy the enemy
+        }
+
     }
 
     private void Destination()
