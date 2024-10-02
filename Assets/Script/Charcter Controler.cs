@@ -33,16 +33,21 @@ public class CharcterControler : MonoBehaviour
             charController.Move(direcation * speed * Time.deltaTime);
             isMoving = true;
             animator.SetBool("isMoving", true);
+
         }
         else
         {
+
             isMoving = false;
             animator.SetBool("isMoving", false);
+
         }
 
 
 
     }
+
+
 
 
 }

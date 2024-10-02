@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: 114647277580713564}
   - component: {fileID: 114228581365138096}
   m_Layer: 0
-  m_Name: Char_2
+  m_Name: Char
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4775,8 +4775,9 @@ GameObject:
   - component: {fileID: 856636020}
   - component: {fileID: 856636019}
   - component: {fileID: 856636018}
+  - component: {fileID: 856636021}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Digg Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4846,21 +4847,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 76148356}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 2003445242}
+        m_TargetAssemblyTypeName: Diggscript, Assembly-CSharp
+        m_MethodName: CreateHole
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Digg
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2003445242}
         m_TargetAssemblyTypeName: Diggscript, Assembly-CSharp
-        m_MethodName: CreateHole
+        m_MethodName: DiggAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4908,6 +4909,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856636016}
   m_CullTransparentMesh: 1
+--- !u!114 &856636021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856636016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8eb963680fd31b4aaff8d522a47264a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myButton: {fileID: 856636018}
+  disableDuration: 4
 --- !u!114 &933513737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5387,7 +5402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003445238}
   - component: {fileID: 2003445240}
-  - component: {fileID: 2003445239}
+  - component: {fileID: 2003445243}
   - component: {fileID: 2003445242}
   - component: {fileID: 2003445241}
   m_Layer: 10
@@ -5413,22 +5428,6 @@ Transform:
   - {fileID: 69140850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2003445239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003445235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 921e6af5cece5b34e906cad8e9f1e20b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charController: {fileID: 2003445240}
-  speed: 5
-  turnSmoothTime: 0.15
-  isMoving: 0
 --- !u!143 &2003445240
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5494,7 +5493,25 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 69140850}
   distanceInFront: 1.5
-  groundYPosition: -1.57
+  charControlerScript: {fileID: 2003445243}
+  disableDuration: 4.13
+  charcterModle: {fileID: 68722002}
+--- !u!114 &2003445243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003445235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e95c5f4bc847e74ea0017391e8e79bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charController: {fileID: 2003445240}
+  speed: 5
+  turnSmoothTime: 0.12
+  isMoving: 0
 --- !u!1 &1827668667416809
 GameObject:
   m_ObjectHideFlags: 0
@@ -5850,7 +5867,7 @@ Animator:
   m_GameObject: {fileID: 1696834748884599252}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 41f081d5c6d286c47a33bed3f84de79a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69ce5dd747afb75488c00ed0f554f1d6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
