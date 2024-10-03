@@ -27,13 +27,6 @@ public class GameLogic : MonoBehaviour
     }
     void Update()
     {
-        enemiesCount = enemies.Count;
-
-        if (enemiesCount == 0)
-        {
-
-
-        }
 
         foreach (EnemyAI enemy in enemies)
         {
@@ -67,7 +60,7 @@ public class GameLogic : MonoBehaviour
 
     public void PlayAgaine()
     {
-        SceneManager.LoadScene("Alzhraa");
+        SceneManager.LoadScene("Alzhraa", LoadSceneMode.Single);
     }
 
 }
