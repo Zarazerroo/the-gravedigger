@@ -23,7 +23,7 @@ public class GameLogic : MonoBehaviour
 
     private CameraSwitch cameraSwitch;
 
-
+    private bool CamerasSwitchedAlready;
 
 
 
@@ -39,11 +39,11 @@ public class GameLogic : MonoBehaviour
     void Update()
     {
         ///to know if the player kill all the ememies and open
-        if (destroyedEnemyCount == enemiesCount)
+        if (destroyedEnemyCount == enemiesCount && CamerasSwitchedAlready == false)
         {
             gate.OpenTheGate();
             cameraSwitch.SwitchToSecondaryCamera();
-
+            CamerasSwitchedAlready = true;
             Debug.Log("tha gate is open");
 
         }
