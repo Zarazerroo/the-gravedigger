@@ -41,7 +41,7 @@ public class GameLogic : MonoBehaviour
         gameOverScreen.SetActive(true);
 
 
-        //charControlerScript.enabled = false;
+        charControlerScript.enabled = false;
         gamePlayScreen.SetActive(false);
 
         Debug.Log("Game Over! The enemy saw you!");
