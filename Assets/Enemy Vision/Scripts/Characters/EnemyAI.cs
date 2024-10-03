@@ -23,10 +23,14 @@ public class EnemyAI : MonoBehaviour
 
     public Transform skeletonTransform;
 
+    private GameLogic gameManager;
+
     private void Start()
     {
         startPos = transform.position;
         startRotation = transform.rotation;
+
+        gameManager = GameLogic.FindObjectOfType<GameLogic>();
 
         // Start patrolling towards portal point A
         currentDestination = portalPointA;
@@ -54,6 +58,7 @@ public class EnemyAI : MonoBehaviour
         // Check if the enemy's Y position is below the destroyHeight
         if (skeletonTransform.position.y < destroyHeight)
         {
+            NotifyDestroyed();
             Destroy(gameObject); // Destroy the enemy
         }
     }
@@ -92,5 +97,15 @@ public class EnemyAI : MonoBehaviour
         }
 
         agent.SetDestination(destination);  // Set the agent's destination to either the player or the portal
+
+
     }
+
+
+    private void NotifyDestroyed()
+    {
+        // Notify the GameManager that this enemy was destroyed
+        gameManager.EnemyDestroyed(this);
+    }
+
 }

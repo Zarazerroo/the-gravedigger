@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    private AudioSource doorSound;
+    // private AudioSource doorSound;
     private Animator doorAnimator;
 
     void Start()
     {
-        doorSound = GetComponent<AudioSource>();
+        // doorSound = GetComponent<AudioSource>();
         doorAnimator = GetComponent<Animator>();
     }
 
     public void OpenTheGate()
     {
-        doorSound.Play();
+        //doorSound.Play();
         doorAnimator.SetTrigger("Open");
     }
 }

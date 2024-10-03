@@ -9,6 +9,9 @@ public class GameLogic : MonoBehaviour
 {
     [SerializeField] private int enemiesCount;
     [SerializeField] private List<EnemyAI> enemies;
+    private int destroyedEnemyCount = 0;
+
+    private Gate gate;
     public GameObject plyer;
 
     public MonoBehaviour charControlerScript;
@@ -18,16 +21,34 @@ public class GameLogic : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject winnerScreen;
 
+    private CameraSwitch cameraSwitch;
+
+
+
 
 
 
     void Start()
     {
+        enemiesCount = enemies.Count;
+
+        gate = FindObjectOfType<Gate>();
+        cameraSwitch = FindObjectOfType<CameraSwitch>();
 
     }
     void Update()
     {
+        ///to know if the player kill all the ememies and open
+        if (destroyedEnemyCount == enemiesCount)
+        {
+            gate.OpenTheGate();
+            cameraSwitch.SwitchToSecondaryCamera();
 
+            Debug.Log("tha gate is open");
+
+        }
+
+        ///to know if the enemies saw the player from the ememes Ai script
         foreach (EnemyAI enemy in enemies)
         {
             if (enemy.IsTheGameOver == true)
@@ -57,10 +78,32 @@ public class GameLogic : MonoBehaviour
 
     }
 
-
+    ///Play Agine botton 
     public void PlayAgaine()
     {
         SceneManager.LoadScene("Alzhraa", LoadSceneMode.Single);
     }
 
+
+    ///to know if all ememies has daide.
+    public void EnemyDestroyed(EnemyAI enemy)
+    {
+        destroyedEnemyCount++;
+        enemies.Remove(enemy);  // Remove the destroyed enemy from the list
+
+        Debug.Log("Enemy destroyed. Total destroyed: " + destroyedEnemyCount);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the object entering the trigger has the "Player" tag
+        if (other.CompareTag("Player"))
+        {
+            Win();
+            // The player has entered the trigger zone, perform actions here
+            Debug.Log("Player entered the trigger zone!");
+
+            // You can call a method or trigger an event, for example:
+
+        }
+    }
 }
