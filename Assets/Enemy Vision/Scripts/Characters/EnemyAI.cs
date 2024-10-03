@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Transform portalPointB;  // Second portal point
     Transform currentDestination;  // The current destination the enemy is heading to
 
+    public bool IsTheGameOver = false;
+
     public float destroyHeight = -4f;
 
     public Transform skeletonTransform;
@@ -71,12 +73,17 @@ public class EnemyAI : MonoBehaviour
 
     private void Destination()
     {
+
+
         Vector3 destination;
 
         if (fieldOfView.IsTarget)  // If the target (player) is detected, follow the player
         {
+
             destination = target.position;
             agent.stoppingDistance = stoppingDistance;  // Set the stopping distance to follow the player
+
+            IsTheGameOver = true;
         }
         else  // If no target is detected, move towards the current portal
         {
