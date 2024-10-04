@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class GameLogic : MonoBehaviour
@@ -10,6 +12,8 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private int enemiesCount;
     [SerializeField] private List<EnemyAI> enemies;
     private int destroyedEnemyCount = 0;
+
+    public TextMeshProUGUI skeletonCountText;
 
     private Gate gate;
     public GameObject plyer;
@@ -22,7 +26,6 @@ public class GameLogic : MonoBehaviour
     public GameObject winnerScreen;
 
     private CameraSwitch cameraSwitch;
-
     private bool CamerasSwitchedAlready;
 
 
@@ -31,6 +34,7 @@ public class GameLogic : MonoBehaviour
     void Start()
     {
         enemiesCount = enemies.Count;
+        destroyedEnemyCount = 0;
 
         gate = FindObjectOfType<Gate>();
         cameraSwitch = FindObjectOfType<CameraSwitch>();
@@ -38,6 +42,7 @@ public class GameLogic : MonoBehaviour
     }
     void Update()
     {
+        UpdateScoreUI();
         ///to know if the player kill all the ememies and open
         if (destroyedEnemyCount == enemiesCount && CamerasSwitchedAlready == false)
         {
@@ -99,11 +104,16 @@ public class GameLogic : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Win();
+
             // The player has entered the trigger zone, perform actions here
             Debug.Log("Player entered the trigger zone!");
-
             // You can call a method or trigger an event, for example:
 
         }
+    }
+
+    void UpdateScoreUI()
+    {
+        skeletonCountText.text = " 2 / " + destroyedEnemyCount.ToString();
     }
 }

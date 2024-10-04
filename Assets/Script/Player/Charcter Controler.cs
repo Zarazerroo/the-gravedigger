@@ -10,11 +10,13 @@ public class CharcterControler : MonoBehaviour
     float turnSmoothVelocity;
     public bool isMoving = false;
     private Animator animator;
+    private AudioSource audioSource;
 
     // Update is called once per frame
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -33,6 +35,7 @@ public class CharcterControler : MonoBehaviour
             charController.Move(direcation * speed * Time.deltaTime);
             isMoving = true;
             animator.SetBool("isMoving", true);
+            audioSource.Play();
 
         }
         else
@@ -40,6 +43,7 @@ public class CharcterControler : MonoBehaviour
 
             isMoving = false;
             animator.SetBool("isMoving", false);
+            audioSource.Pause();
 
         }
 
