@@ -12,6 +12,7 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private int enemiesCount;
     [SerializeField] private List<EnemyAI> enemies;
     private int destroyedEnemyCount = 0;
+    private AudioSource ememiesDie;
 
     public TextMeshProUGUI skeletonCountText;
 
@@ -38,6 +39,7 @@ public class GameLogic : MonoBehaviour
 
         gate = FindObjectOfType<Gate>();
         cameraSwitch = FindObjectOfType<CameraSwitch>();
+        ememiesDie = GetComponent<AudioSource>();
 
     }
     void Update()
@@ -86,17 +88,40 @@ public class GameLogic : MonoBehaviour
     ///Play Agine botton 
     public void PlayAgaine()
     {
-        SceneManager.LoadScene("Alzhraa", LoadSceneMode.Single);
-    }
+        // Get the current scene's build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+    public void LoadNextLevel()
+    {
+        // Get the current scene's build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Check if there is a next level
+        if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            // Load the next scene by build index
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+        else
+        {
+            Debug.Log("No more levels to load!");
+        }
+    }
 
     ///to know if all ememies has daide.
     public void EnemyDestroyed(EnemyAI enemy)
     {
         destroyedEnemyCount++;
         enemies.Remove(enemy);  // Remove the destroyed enemy from the list
+        ememiesDie.Play();
 
         Debug.Log("Enemy destroyed. Total destroyed: " + destroyedEnemyCount);
+    }
+    void UpdateScoreUI()
+    {
+        skeletonCountText.text = enemiesCount + " / " + destroyedEnemyCount.ToString();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -112,8 +137,5 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    void UpdateScoreUI()
-    {
-        skeletonCountText.text = " 2 / " + destroyedEnemyCount.ToString();
-    }
+
 }

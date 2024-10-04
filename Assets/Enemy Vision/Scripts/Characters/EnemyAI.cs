@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool IsTheGameOver = false;
 
-    public float destroyHeight = -4f;
+    public float destroyHeight = -2.5f;
 
     public Transform skeletonTransform;
 
@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         startPos = transform.position;
         startRotation = transform.rotation;
 
-        gameManager = GameLogic.FindObjectOfType<GameLogic>();
+        gameManager = FindObjectOfType<GameLogic>();
 
         // Start patrolling towards portal point A
         currentDestination = portalPointA;
