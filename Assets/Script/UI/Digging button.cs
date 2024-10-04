@@ -11,6 +11,9 @@ public class Diggingbutton : MonoBehaviour
     // Duration to disable the button
     public float disableDuration = 4.0f;
 
+    // Digging SFX
+    public AudioSource DigggingSound;
+
     void Start()
     {
         // Ensure the button is assigned
@@ -19,8 +22,13 @@ public class Diggingbutton : MonoBehaviour
             myButton = GetComponent<Button>();
         }
 
+        // Get Digging SFX from component
+        DigggingSound = GetComponent<AudioSource>();
+
         // Add a listener to the button click event
         myButton.onClick.AddListener(() => DisableButtonForSeconds(disableDuration));
+        myButton.onClick.AddListener(() => PlaySFX());
+
     }
 
     // Method to disable the button for a certain number of seconds
@@ -40,5 +48,11 @@ public class Diggingbutton : MonoBehaviour
 
         // Re-enable the button
         myButton.interactable = true;
+    }
+    
+    // Play the SFX
+    public void PlaySFX()
+    {
+        DigggingSound.Play();
     }
 }

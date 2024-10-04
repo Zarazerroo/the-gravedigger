@@ -12,7 +12,7 @@ public class HoleScript : MonoBehaviour
             Collider enemyCollider = other.GetComponent<Collider>();
             if (enemyCollider != null)
             {
-                Destroy(enemyCollider); // Remove the collider so the enemy falls
+                Destroy(enemyCollider); // Remove the collider so the enemy 
             }
         }
     }
