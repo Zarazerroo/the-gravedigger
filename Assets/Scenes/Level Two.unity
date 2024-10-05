@@ -12697,6 +12697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037978507}
   - component: {fileID: 2037978508}
+  - component: {fileID: 2037978509}
   m_Layer: 0
   m_Name: win sound
   m_TagString: Untagged
@@ -12815,6 +12816,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2037978509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037978506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949a65e406859254ebe008ff5e72f21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theAoudio: {fileID: 2037978508}
 --- !u!1 &2051600064
 GameObject:
   m_ObjectHideFlags: 0
